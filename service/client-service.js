@@ -24,30 +24,9 @@ const crearNuevaLista = (nombre, email) => {
 // recorre todo el arbol del DOM(HTML) y obtiene data-table
 const table = document.querySelector("[data-table]")
 
-// promesa, funcion asincrona
-const listaClientes = () => {
-  const promise = new Promise((resolve, reject) => { //indicamosque va a ser asincrona
-    const http = new XMLHttpRequest(); //comunicacion entre el front y el backend
-
-    // abre el metodo get
-    http.open("GET", "http://localhost:3000/perfil")
-
-    // envia la petecion
-    http.send()
-
-    // funcion para obtener datos del servidor
-    http.onload = () => {
-      //la funcio JSON Lo convierte en un objeto JS
-      const response = JSON.parse(http.response); //Aquí, se toma la respuesta del servidor 
-      if (http.status >= 400) {
-        reject(response)
-      } else {
-        resolve(response)
-      }
-    };
-  });
-  return promise;
-}
+// fetch API, // abre una conexion a la bd, va a geneerar una promesa, //respuesta recive la promesa 
+const listaClientes = () => fetch("http://localhost:3000/perfil").then((respuesta) => respuesta.json()) //.json vuelve la respuesta en un objeto
+  
 
 // Llamar a la función listaClientes para obtener los datos y trabajar con ellos
 listaClientes()
