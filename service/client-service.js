@@ -26,19 +26,13 @@ const table = document.querySelector("[data-table]")
 
 // fetch API, // abre una conexion a la bd, va a geneerar una promesa, //respuesta recive la promesa 
 const listaClientes = () => fetch("http://localhost:3000/perfil").then((respuesta) => respuesta.json()) //.json vuelve la respuesta en un objeto
-  
 
 // Llamar a la función listaClientes para obtener los datos y trabajar con ellos
 listaClientes()
-  // La función then() se ejecutará cuando la promesa se resuelva correctamente
-  .then((data) => {
-    // se raliza un bucle atravex de cada elemeto dentro del array 'data'
-    data.forEach(perfil => { //y cada objeto representa representa un perfil de usuario
-      const nuevaLinea = crearNuevaLista(perfil.nombre, perfil.email);
-      table.appendChild(nuevaLinea); //se agrega la nueva fila a la tabla
-    });
-  })
-  .catch((error) => alert("Ocurrio un error"));
-
-
-
+.then((data) => {
+  data.forEach((perfil) => {
+    const nuevaLinea = crearNuevaLista(perfil.nombre, perfil.email);
+    table.appendChild(nuevaLinea);
+  });
+})
+.catch((error) => alert("Ocurrio un error"))
