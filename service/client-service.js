@@ -29,10 +29,12 @@ const listaClientes = () => fetch("http://localhost:3000/perfil").then((respuest
 
 // Llamar a la función listaClientes para obtener los datos y trabajar con ellos
 listaClientes()
+// La función then() se ejecutará cuando la promesa se resuelva correctamente
 .then((data) => {
-  data.forEach((perfil) => {
+  // se raliza un bucle atravex de cada elemeto dentro del array 'data'
+  data.forEach(perfil => { //y cada objeto representa representa un perfil de usuario
     const nuevaLinea = crearNuevaLista(perfil.nombre, perfil.email);
-    table.appendChild(nuevaLinea);
+    table.appendChild(nuevaLinea); //se agrega la nueva fila a la tabla
   });
 })
-.catch((error) => alert("Ocurrio un error"))
+.catch((error) => alert("Ocurrio un error"));
