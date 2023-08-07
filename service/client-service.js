@@ -18,10 +18,18 @@ const crearCliente = (nombre, email) =>{
       id: uuid.v4() //? el id lo va a generar la funtion uuid.v4
     })
   })
-}
+};
+
+//! funcion para eliminar un cliene
+const eliminarCliente = (id) =>{
+  return fetch(`http://localhost:3000/perfil/${id}`, {
+    method: "DELETE" //? definimos el metodo con que se va a trabajar
+  })
+} 
 
 
 export const clienteServices = {
   listaClientes,
-  crearCliente
+  crearCliente,
+  eliminarCliente
 }
