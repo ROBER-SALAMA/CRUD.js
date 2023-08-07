@@ -10,11 +10,11 @@ formulario.addEventListener("submit", (evento) => {
     //? .value obtiene el valor requerido
     const nombre = document.querySelector("[data-nombre]").value
     const email = document.querySelector("[data-email]").value
-    console.log(nombre, "-" , email);
+
     //? accion para crear cliente
     clienteServices
     .crearCliente(nombre, email)
-    .then(respuesta => {
+    .then(() => {
         window.location.href = "/screens/registro_completado.html"
     })
     .catch(error => console.log(error))
